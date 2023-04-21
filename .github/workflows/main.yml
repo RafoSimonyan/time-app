@@ -15,11 +15,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Run docker container for mysql
-      - uses: mirromutth/mysql-action@v1.1
+        uses: mirromutth/mysql-action@v1.1
         with:
           mysql database: ${{ env.MYSQL_ROOT_DATABASE }}
           mysql root password: ${{ env.MYSQL_DATABASE }}
-      # - name: Create docker image backend
-      #   run: docker build ./api --file Dockerfile time-backend
-      # - name: Create docker image frontend
-      #   run: docker build ./frontend --file Dockerfile time-frontend
+      - name: Create docker image backend
+        run: docker build ./api --file Dockerfile time-backend
+      - name: Create docker image frontend
+        run: docker build ./frontend --file Dockerfile time-frontend
