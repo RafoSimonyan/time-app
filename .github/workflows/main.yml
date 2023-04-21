@@ -20,6 +20,6 @@ jobs:
           mysql database: ${{ env.MYSQL_ROOT_DATABASE }}
           mysql root password: ${{ env.MYSQL_DATABASE }}
       - name: Create docker image backend
-        run: docker build ./api --file Dockerfile time-backend
+        run: docker build -t ./api --file Dockerfile time-backend
       - name: Create docker image frontend
-        run: docker build ./frontend --file Dockerfile time-frontend
+        run: docker build -t ./frontend --file Dockerfile time-frontend
