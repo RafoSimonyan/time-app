@@ -36,10 +36,10 @@ jobs:
     steps:
     
       - name: Run mysql docker image
-        run: docker run -d --name db 6c0442
+        run: docker run -d --name db mysql
         
       - name: Run backend docker image
-        run: docker run -d --name backend -p 5000:${{ env.BACKEND_URL }} --link ${{ env.MYSQL_DATABASE }}:6c0442 time-backend
+        run: docker run -d --name backend -p 5000:${{ env.BACKEND_URL }} --link ${{ env.MYSQL_DATABASE }}:mysql time-backend
         
       - name: Run frontend docker image
         run: docker run -d --name frontend -p 3000:3000 time-frontend
