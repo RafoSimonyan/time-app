@@ -16,7 +16,9 @@ jobs:
         uses: actions/checkout@v3
         
       - name: Create docker image backend and frontend
-        run: docker build -t time-backend -f api/Dockerfile . && docker build -t time-frontend -f frontend/Dockerfile .
+        run: | 
+            docker build -t time-backend -f api/Dockerfile .
+            docker build -t time-frontend -f frontend/Dockerfile .
         
       - name: Pull image for mysql
         uses: mirromutth/mysql-action@v1.1
