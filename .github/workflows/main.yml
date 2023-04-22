@@ -12,14 +12,17 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Run docker container for mysql
-        uses: mirromutth/mysql-action@v1.1
-        with:
-          mysql database: ${{ env.MYSQL_ROOT_DATABASE }}
-          mysql root password: ${{ env.MYSQL_DATABASE }}
-          
       - name: Checkout 
         uses: actions/checkout@v3
         
       - name: Create docker image backend and frontend
         run: docker build -t time-backend -f api/Dockerfile . && docker build -t time-frontend -f frontend/Dockerfile .
+        
+      - name: Pull image for mysql
+        uses: mirromutth/mysql-action@v1.1
+        with:
+          mysql database: ${{ env.MYSQL_ROOT_DATABASE }}
+          mysql root password: ${{ env.MYSQL_DATABASE }} 
+
+      - name: Check docker images
+        run: docker images
